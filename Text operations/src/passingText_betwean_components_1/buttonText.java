@@ -1,4 +1,4 @@
-package passingText_betwean_components;
+package passingText_betwean_components_1;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
