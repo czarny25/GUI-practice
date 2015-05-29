@@ -13,19 +13,23 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+/*
+ *  This class along with 
+ *  	 
+ *  	TextPanel class
+ *  	EntryPanel class 
+ *  
+ *   create an example of how to communicate between custom components
+ */
+
+public class MainFrame extends JFrame{
 
 
-public class buttonText extends JFrame{
-
-	JTextField firstName = new JTextField(20);
-	JTextField secondName = new JTextField(20);
+	EntryPanel entryPanel;
+	TextPanel textPanel;	
+	JButton btnLoad;
 	
-	JTextArea text = new JTextArea();
-	JButton btn1 = new JButton("Load text");
-	
-	JPanel entryPanel = new JPanel();
-	
-	public buttonText() throws HeadlessException {
+	public MainFrame() throws HeadlessException {
 		
 		setTitle("Text area presentation");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,20 +37,24 @@ public class buttonText extends JFrame{
 		setLocationRelativeTo(null);
 		setLayout(new BorderLayout());
 		
-		entryPanel.setLayout(new FlowLayout());
-		entryPanel.add(firstName);
-		entryPanel.add(secondName);
+
+		entryPanel = new EntryPanel();
+		textPanel = new TextPanel();
+		btnLoad = new JButton("Load text");
+
+		entryPanel.setTextPanel(textPanel);
 		
 		add(entryPanel, BorderLayout.NORTH);
-		add(text, BorderLayout.CENTER);
-		add(btn1, BorderLayout.SOUTH);
+		add(textPanel, BorderLayout.CENTER);
+		add(btnLoad, BorderLayout.SOUTH);
 		
 		
-		btn1.addActionListener(new ActionListener() {
+		btnLoad.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				text.append(firstName.getText() + " "+ secondName.getText() + "\n");
+				textPanel.appendText("This is button from main\n");
+//				textPanel.appendText(firstName.getText() + " "+ secondName.getText() + "\n");
 			}
 		});
 		
@@ -57,7 +65,7 @@ public class buttonText extends JFrame{
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 	          public void run() {
 	              
-	        	  buttonText frame = new buttonText();
+	        	  MainFrame frame = new MainFrame();
 	              frame.setVisible(true);
 	              
 	          }

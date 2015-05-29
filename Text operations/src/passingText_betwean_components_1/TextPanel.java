@@ -1,26 +1,24 @@
-package passingText_betwean_components_2;
+package passingText_betwean_components_1;
 
 import java.awt.BorderLayout;
 
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 public class TextPanel extends JPanel{
 
-	private JTextArea textArea;
+private JTextArea textArea;
 	
 	public TextPanel() {
 		
 		textArea = new JTextArea();
-		
 		setLayout(new BorderLayout());
-		add(textArea, BorderLayout.CENTER);
+		add(new JScrollPane(textArea), BorderLayout.CENTER);
 		
 	}
 	
-	public void append(String text){
+	public void appendText(String text){
 		textArea.append(text);
 	}
-	
-
 }
